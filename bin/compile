@@ -1,6 +1,5 @@
 #!/bin/bash
 
-BP_DIR=`cd $(dirname $0); cd ..; pwd`
 BUILD_DIR=$1
 
 indent() {
@@ -28,9 +27,7 @@ while read url; do
   echo "$url"
   if [[ -n "$url" ]]; then
     echo "Vendoring $url" | indent
-    curl -L --silent $url > $bin/terraform.zip
-    $UNZIP_COMMAND terraform.zip && rm terraform.zip
+    curl -L --silent $url > $BUILD_DIR/bin/terraform.zip
+    $UNZIP_COMMAND $BUILD_DIR/bin/terraform.zip && rm terraform.zip
   fi
-done < ".terraform_url"
-
-cp $BP_DIR/bin/* $BUILD_DIR/bin/ 
+done < "$BUILD_DIR/.terraform_url"
