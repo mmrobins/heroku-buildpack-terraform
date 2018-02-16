@@ -19,6 +19,8 @@ fi
 
 cd $1
 mkdir -p bin
+pwd
+ls
 
 while read url; do
   echo "$url"
