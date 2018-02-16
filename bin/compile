@@ -18,6 +18,7 @@ if [ $STACK == "cedar" ]; then
 fi
 
 cd $1
+mkdir -p bin
 
 while read url; do
   if [ -n "$url" ]; then
