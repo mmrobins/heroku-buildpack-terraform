@@ -21,7 +21,8 @@ cd $1
 mkdir -p bin
 
 while read url; do
-  if [ -n "$url" ]; then
+  echo "$url"
+  if [[ -n "$url" ]]; then
     echo "Vendoring $url" | indent
     curl -L --silent $url > $bin/terraform.zip
     $UNZIP_COMMAND terraform.zip && rm terraform.zip
