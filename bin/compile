@@ -21,6 +21,7 @@ fi
 
 cd $BUILD_DIR
 mkdir -p bin
+cat $BUILD_DIR/.terraform_url
 
 echo "Reading urls"
 while read url; do
@@ -30,4 +31,4 @@ while read url; do
     curl -L --silent $url > $BUILD_DIR/bin/terraform.zip
     $UNZIP_COMMAND $BUILD_DIR/bin/terraform.zip && rm terraform.zip
   fi
-done < "$BUILD_DIR/.terraform_url"
+done < $BUILD_DIR/.terraform_url
