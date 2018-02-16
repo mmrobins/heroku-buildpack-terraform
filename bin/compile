@@ -23,7 +23,14 @@ mkdir -p $BUILD_DIR/bin
 
 echo "Reading urls"
 while IFS='' read -r url || [[ -n "$url" ]]; do
-  echo "Vendoring $url" | indent
+  echo "Downloading Terraform from $url" | indent
   curl -L --silent $url > $BUILD_DIR/bin/terraform.zip
-  $UNZIP_COMMAND $BUILD_DIR/bin/terraform.zip && rm $BUILD_DIR/bin/terraform.zip
-done < $BUILD_DIR/.terraform_url
+done < $BUILD_DIR/.terraform_url 
+
+echo "Unzipping..." | indent
+$UNZIP_COMMAND $BUILD_DIR/bin/terraform.zip
+echo "Done." | indent
+
+echo "Removing build artifcats..." | indent
+rm $BUILD_DIR/bin/terraform.zip
+echo "Done"
