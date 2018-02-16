@@ -29,8 +29,6 @@ done < $BUILD_DIR/.terraform_url
 
 echo "Unzipping..." | indent
 $UNZIP_COMMAND $BUILD_DIR/bin/terraform.zip
-echo "Done." | indent
-
-echo "Removing build artifcats..." | indent
+mv terraform $BUILD_DIR/bin/terraform
 rm $BUILD_DIR/bin/terraform.zip
 echo "Done"
