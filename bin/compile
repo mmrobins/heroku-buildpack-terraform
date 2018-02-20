@@ -19,14 +19,14 @@ if [ $STACK == "cedar" ]; then
   UNZIP_COMMAND="jar xf"
 fi
 
-mkdir -p $BUILD_DIR/.terraform/bin
+mkdir -p $BUILD_DIR/bin
 
 while IFS='' read -r url || [[ -n "$url" ]]; do
   echo "Installing Terraform..." | indent
-  curl -L --silent $url > $BUILD_DIR/.terraform/bin/terraform.zip
+  curl -L --silent $url > $BUILD_DIR/bin/terraform.zip
 done < $BUILD_DIR/.terraform_url 
 
-$UNZIP_COMMAND $BUILD_DIR/.terraform/bin/terraform.zip
-mv terraform $BUILD_DIR/.terraform/bin/terraform
-rm $BUILD_DIR/.terraform/bin/terraform.zip
+$UNZIP_COMMAND $BUILD_DIR/bin/terraform.zip
+mv terraform $BUILD_DIR/bin/terraform
+rm $BUILD_DIR/bin/terraform.zip
 echo "Done." | indent
